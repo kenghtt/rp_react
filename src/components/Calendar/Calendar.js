@@ -6,8 +6,7 @@ import {render} from "@testing-library/react";
 import DayTimePicker from '@mooncake-dev/react-day-time-picker';
 
 
-
-function Calendar() {
+function Calendar(props) {
 
     // const [date, setDate] = useState(new Date());
     // const onChange = date => {
@@ -15,11 +14,21 @@ function Calendar() {
     // };
 
     const [date, setDate] = useState(new Date());
+    const [display, setDisplay] = useState(props.display);
+
 
     const [isScheduling, setIsScheduling] = useState(false);
     const [isScheduled, setIsScheduled] = useState(false);
     const [scheduleErr, setScheduleErr] = useState('');
 
+
+    function enable() {
+        setDisplay("")
+    }
+
+    function disable() {
+        setDisplay("none")
+    }
 
     const handleScheduled = date => {
         setIsScheduling(true);
@@ -39,21 +48,28 @@ function Calendar() {
     }
 
     return (
-
         <div>
+
+            {/*<button className={styles.reserveNowBtn}  onClick={enable}> RESERVE NOW</button>*/}
+            {/*<button onClick={disable}> DISABLE</button>*/}
+
             {/*<CalendarReact onChange={onChange} value={date} />*/}
             {/*{console.log(date)}*/}
             {/*{date.toString()}*/}
 
+
+            {/*<div style={{display: display}}>*/}
+            <div style={{display: props.display}}>
+
             <DayTimePicker timeSlotSizeMinutes={30}
-                           timeSlotValidator={timeSlotValidator}
-                           onConfirm={handleScheduled}
-                           isLoading={isScheduling}
-                           isDone={isScheduled}
-                           err={scheduleErr}/>
+                               timeSlotValidator={timeSlotValidator}
+                               onConfirm={handleScheduled}
+                               isLoading={isScheduling}
+                               isDone={isScheduled}
+                               err={scheduleErr}/>
 
+            </div>
 
-            <stuff></stuff>
 
         </div>
 
@@ -62,6 +78,7 @@ function Calendar() {
 
 
 }
+
 
 function timeSlotValidator(slotTime) {
     const eveningTime = new Date(

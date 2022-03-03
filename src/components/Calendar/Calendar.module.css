@@ -1,1 +1,16 @@
-.Calendar {}
+/*.Calendar {*/
+/*    #reserveNowBtn{*/
+/*        color: green;*/
+/*    }*/
+
+/*}*/
+
+
+.reserveNowBtn{
+    color: blue;
+}
+
+.otherClass{
+    background-color: orange;
+
+}
